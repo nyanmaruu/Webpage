@@ -45,12 +45,13 @@ session_start();
                         <?php
                         if (isset($_SESSION["userid"])) {
                         ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"><?php echo $_SESSION["useruid"]; ?></a>
-                                <a class="nav-link" href="./Controller/AccountManagmentInculudes/logoutInc.php">LOGOUT</a>
-                            <?php
+                            <!-- <li class="nav-item"> -->
+                            <a class="nav-link" href="#"><?php echo $_SESSION["useruid"]; ?></a>
+                            <a class="nav-link" href="./Controller/AccountManagmentInculudes/logoutInc.php">LOGOUT</a>
+                            <!-- </li> -->
+                        <?php
                         } else {
-                            ?>
+                        ?>
                             <li class="nav-item">
                                 <a class="nav-link" href="?oldal=login"><i class="fas fa-sign-in-alt fa-lg"></i> Login</a>
                             </li>
@@ -96,8 +97,12 @@ session_start();
 
     </section>
 
+    <div class="errorHandler"></div>
     <div class="container">
         <div class="row d-flex justify-content-center" id="baseContent">
+
+
+
         </div>
 
 

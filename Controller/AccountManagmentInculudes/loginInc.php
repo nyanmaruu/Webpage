@@ -12,5 +12,5 @@ if (isset($_POST["submit"])) {
 
     $login->loginUser();
 
-    header("location: http://localhost/webpage/?oldal=&error=none");
+    header("location: http://localhost/webpage/?oldal=&error=loggedIn");
 }

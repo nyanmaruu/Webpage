@@ -28,7 +28,7 @@ class SignupContr extends Signup
 
         if ($this->invalidUid() == false) {
 
-            header("location: http://localhost/webpage/?oldal=login&error=invalidUsername");
+            header("location: http://localhost/webpage/?oldal=login&error=invalidUsernameOrPassword");
             exit();
         }
 
@@ -46,7 +46,7 @@ class SignupContr extends Signup
 
         if ($this->uidTakenCheck() == false) {
 
-            header("location: http://localhost/webpage/?oldal=login&error=UsernameOrPasswordTaken");
+            header("location: http://localhost/webpage/?oldal=login&error=UsernameAlreadyTaken");
             exit();
         }
 

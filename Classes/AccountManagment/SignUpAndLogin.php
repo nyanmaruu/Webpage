@@ -6,26 +6,43 @@ function loginToText()
     $output .=
         '
     <div class="wrapper">
-    <div class="index-login-signup">
-        <H4>SIGN UP</H4>
-        <P>Don"t have an account yet? Sign up here!</P>
+    <div  class="form-box register">
+        <H2>SIGN UP</H2>
         <form action="./Controller/AccountManagmentInculudes/signUpInc.php" method="post">
-            <input type="text" name="uid" placeholder="Username">
-            <input type="password" name="pwd" placeholder="Password">
-            <input type="password" name="pwdrepeat" placeholder="Repeat Password">
-            <input type="text" name="email" placeholder="E-mail">
+        <div class="input-box">
+        <input type="text" name="uid" placeholder="Username">
+        </div>
+        <div class="input-box">
+        <input type="password" name="pwd" placeholder="Password">
+        </div>
+        <div class="input-box">
+        <input type="password" name="pwdrepeat" placeholder="Repeat Password">
+        </div>
+        <div class="input-box">
+        <input type="text" name="email" placeholder="E-mail">
+        </div>
+            <button class="AccountBtn" value= type="submit" name="submit">SIGN UP</button>
+            <div>
             <br>
-            <button value= type="submit" name="submit">SIGN UP</button>
+            <p>Already have an account?<a href="#" class="login-link">Login</a></p>
+            </div>
         </form>
     </div>
-    <div class="index-login-login">
-        <H4>LOGIN</H4>
-        <p>Don"t have an account yet? Sign up here!</p>
+    <div class="form-box login">
+        <H2>LOGIN</H2>
         <form action="./Controller/AccountManagmentInculudes/loginInc.php" method="post">
-            <input type="text" name="uid" placeholder="Username">
-            <input type="password" name="pwd" placeholder="Password">
+        <div class="input-box">
+        <input type="text" name="uid" placeholder="Username">
+        </div>
+        <div class="input-box">
+        <input type="password" name="pwd" placeholder="Password">
+        </div>
             <br>
-            <button type="submit" name="submit">LOGIN</button>
+            <button class="AccountBtn" type="submit" name="submit">LOGIN</button>
+            <div>
+            <br>
+            <p> Dont have an account?<a href="#" class="register-link">Register</a></p>
+            </div>
         </form>
     </div>
 </div>

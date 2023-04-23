@@ -15,5 +15,5 @@ if (isset($_POST["submit"])) {
 
     $signup->signUpUser();
 
-    header("location: http://localhost/webpage/?oldal=&error=none");
+    header("location: http://localhost/webpage/?oldal=login&error=SuccessfullySignedUp");
 }
