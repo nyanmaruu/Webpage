@@ -1,7 +1,7 @@
 <?php
-
 class Product
 {
+    public $id;
     public $image;
     public $name;
     public $description;
@@ -9,13 +9,19 @@ class Product
     public $short_introduction;
 
 
-    public function __construct($image, $name, $description, $price, $short_introduction)
+    public function __construct($id, $image, $name, $description, $price, $short_introduction)
     {
+        $this->id = $id;
         $this->image = $image;
         $this->name = $name;
         $this->description = $description;
         $this->price = $price;
         $this->short_introduction = $short_introduction;
+    }
+
+    public function getId()
+    {
+        return $this->id;
     }
 
     public function getImage()

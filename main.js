@@ -30,7 +30,3 @@ if (url.match("emptyinput")) {
     errors.style.color = "#b61d1d";
     errors.innerHTML = "The username or password is wrong!";
 }
-
-
-
-

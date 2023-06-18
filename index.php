@@ -40,7 +40,7 @@ session_start();
                 <div class="navbar-right d-flex justify-content-end">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link" href="?oldal=cart"><i class="fas fa-shopping-cart fa-lg"></i></a>
+                            <button class="nav-link" id="modal" class="btn btn-primary"><i class="fas fa-shopping-cart fa-lg"></i></button>
                         </li>
                         <?php
                         if (isset($_SESSION["userid"])) {
@@ -61,6 +61,7 @@ session_start();
                         ?>
 
                     </ul>
+
                 </div>
             </div>
             </div>
@@ -73,7 +74,7 @@ session_start();
                 <img src="Pictures/frontPage/about-img.png" alt="">
             </div>
             <div class="content">
-                <h3 class="title">what's make our coffee special!</h3>
+                <h3 class="title">what' s make our coffee special!</h3>
                 <p>Quality: high quality ingredients,best delivery time, consistency, fresh and appealing sweet & savory selections are keys to success. Selection: have the most popular products in the market and something special that makes you unique.</p>
                 <a href="?oldal=allCoffee" class="btn">Shop Now</a>
                 <a href="?oldal=about" class="btn">read more</a>
@@ -94,17 +95,74 @@ session_start();
             </div>
 
         </div>
-
     </section>
+
+    <section>
+        <div id="modal-aside-right" class="modal fixed-left fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header border-bottom-0">
+                        <h5 class="modal-title" id="exampleModalLabel">
+                            Your Shopping Cart
+                        </h5>
+                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <h5>Total: <span id="subtotal" class="price text-success"></span></h5>
+                    </div>
+                    <div class="modal-footer border-top-0 d-flex justify-content-between">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success">Checkout</button>
+                    </div>
+                </div>
+            </div>
+    </section>
+
+
+
 
     <div class="errorHandler"></div>
     <div class="container">
-        <div class="row d-flex justify-content-center" id="baseContent">
+        <!-- <div class="row d-flex justify-content-center" id="baseContent">
 
+        </div> -->
 
-
-        </div>
-
+        <?php
+        if (isset($_GET["oldal"])) {
+            switch ($_GET["oldal"]) {
+                case 'indexPage':
+                    include 'index.php';
+                    break;
+                case 'allCoffee':
+                    include './Js/contact';
+                    break;
+                case 'contact':
+                    include './Pages/contact/contact.php';
+                    break;
+                case 'about':
+                    include './Pages/about/about.php';
+                    break;
+                case 'login':
+                    include './Pages/LoginSignUp/loginSignUp.php';
+                    break;
+                case 'cart':
+                    include './Pages/cart/cart.php';
+                    break;
+                    // default:
+                    //     include 'Lista.php';
+                    // case 'Modositasoldal':
+                    //     include 'Modositas.php';
+                    //     break;
+            }
+        } else {
+            // include 'Lista.php';
+        }
+        ?>
 
     </div>
 
@@ -125,42 +183,10 @@ session_start();
         </div>
     </footer>
 
-    <?php
-    if (isset($_GET["oldal"])) {
-        switch ($_GET["oldal"]) {
-            case 'indexPage':
-                include 'index.php';
-                break;
-            case 'allCoffee':
-                include './Pages/allCoffee/allProductPage.php';
-                break;
-            case 'contact':
-                include './Pages/contact/contact.php';
-                break;
-            case 'about':
-                include './Pages/about/about.php';
-                break;
-            case 'login':
-                include './Pages/login/login.php';
-                break;
-            case 'cart':
-                include './Pages/cart/cart.php';
-                break;
-                // default:
-                //     include 'Lista.php';
-                // case 'Modositasoldal':
-                //     include 'Modositas.php';
-                //     break;
-        }
-    } else {
-        // include 'Lista.php';
-    }
-    ?>
-
 
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    <script src="main.js"></script>
 </body>
 
 </html>
