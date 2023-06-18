@@ -32,7 +32,6 @@ class ProductActions extends AllProducts
       $output .=
 
         '
-        <div class="row d-flex justify-content-center" id="baseContent">
             <div class="col-6 col-md-4 col-lg-3 mb-4">
             <div class="card mt-5">
                 <div class="card-header border-0" >
@@ -48,8 +47,6 @@ class ProductActions extends AllProducts
                 </div>  
             </div>
             </div>
-            </div>
-            <script src="./Js/allCoffee/allProductPage.js"></script>
             ';
     }
     return $output;
@@ -66,7 +63,6 @@ class ProductActions extends AllProducts
       $output .=
 
         '
-        <div class="row d-flex justify-content-center" id="baseContent">
   <div class="productContainer">
 		<div class="row justify-content-center">
 			<div class="col-md-8 bg-white rounded p-4">
@@ -90,8 +86,7 @@ class ProductActions extends AllProducts
 			</div>
 		</div>
 	</div>
-  </div>
-  <script src="./Js/allCoffee/allProductPage.js"></script>
+
       
             ';
     }

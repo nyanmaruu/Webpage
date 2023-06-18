@@ -139,7 +139,7 @@ session_start();
                     include 'index.php';
                     break;
                 case 'allCoffee':
-                    include './Js/contact';
+                    include './Pages/Products/allProduct.php';
                     break;
                 case 'contact':
                     include './Pages/contact/contact.php';
@@ -187,6 +187,7 @@ session_start();
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="main.js"></script>
+    <script src="./Js/cart/cart.js"></script>
 </body>
 
 </html>
