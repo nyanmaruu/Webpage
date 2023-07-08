@@ -43,6 +43,11 @@ class Session_Cart
 
     public function getCartSession()
     {
+
+        if (empty($_SESSION['cart'])) {
+            echo "Your Cart Is Empty!";
+        }
+
         if (!isset($_SESSION['cart']) && empty($_SESSION['cart'])) {
             $_SESSION['cart'] = [];
         }
@@ -77,6 +82,6 @@ class Session_Cart
         foreach ($_SESSION['cart'] as $product_value) {
             $totalprice += $product_value['price'];
         }
-        return $totalprice;
+        return   $totalprice;
     }
 }

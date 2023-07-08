@@ -98,6 +98,7 @@ session_start();
     </section>
 
     <section>
+
         <div id="modal-aside-right" class="modal fixed-left fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -117,7 +118,7 @@ session_start();
                     </div>
                     <div class="modal-footer border-top-0 d-flex justify-content-between">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-success">Checkout</button>
+                        <a href="?oldal=checkout" type="button" class="btn btn-success">Checkout</a>
                     </div>
                 </div>
             </div>
@@ -128,9 +129,7 @@ session_start();
 
     <div class="errorHandler"></div>
     <div class="container">
-        <!-- <div class="row d-flex justify-content-center" id="baseContent">
 
-        </div> -->
 
         <?php
         if (isset($_GET["oldal"])) {
@@ -145,13 +144,16 @@ session_start();
                     include './Pages/contact/contact.php';
                     break;
                 case 'about':
-                    include './Pages/about/about.php';
+                    include './Pages/About/about.php';
                     break;
                 case 'login':
                     include './Pages/LoginSignUp/loginSignUp.php';
                     break;
                 case 'cart':
                     include './Pages/cart/cart.php';
+                    break;
+                case 'checkout':
+                    include './Pages/Checkout/checkout.php';
                     break;
                     // default:
                     //     include 'Lista.php';

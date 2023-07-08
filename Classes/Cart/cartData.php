@@ -65,6 +65,34 @@ class CartData extends Cart
         echo $output;
     }
 
+    function dataOfCartCheckout()
+    {
+        $output = '';
+        $cartData = $this->cartClass->getCartSession();
+
+
+
+        foreach ($cartData as $row) {
+            $output .=
+
+                '
+            <tbody>
+                <tr>
+                    <td class="w-25">
+                        <img src="' . $row['pictures'] . '" class="img-fluid img-thumbnail" alt="#">
+                    </td>
+                    <td>' . $row["name"] . '</td>
+                    <td>' . $row['price'] . '$</td>
+                    <td class="qty"><input type="text" class="form-control" id="input1" value="' . $row['quantity'] . '"></td>
+                    <td>Fejlesztés alatt $</td>
+                </tr>
+            </tbody>
+      ';
+        }
+        echo $output;
+    }
+
+
 
 
     function addToCart()
@@ -180,7 +208,7 @@ class CartData extends Cart
         $output .=
             '
          
-           Subtotal:' . $subtotal . '$
+           <p id="cartValue">' . $subtotal . '$</p>
 
       ';
 

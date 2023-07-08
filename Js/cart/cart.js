@@ -8,25 +8,13 @@ $("#modal").click(function () {
             action: "getCartData",
         },
         success: function (response) {
-            console.log("test");
             $(".modal-body").html(response);
             $('#modal-aside-right').modal('show');
-        }
-
-    })
-
-    $.ajax({
-        url: "./Controller/Cart/cart.php",
-        type: "POST",
-        data: {
-            action: "getSubtotal",
-
-        },
-        success: function (response) {
-            $("$subtotal").html(response);
-
+            subTotal();
         }
     })
+
+
 })
 
 function addToCartModal(id) {
@@ -41,8 +29,91 @@ function addToCartModal(id) {
         success: function (response) {
             $(".modal-body").html(response);
             $('#modal-aside-right').modal('show');
+
+        },
+
+    })
+
+    subTotal();
+}
+
+function showCartDetails() {
+
+
+    $.ajax({
+        url: "./Controller/Cart/cart.php",
+        type: "POST",
+        data: {
+            action: "getCartDataForCheckout",
+        },
+        success: function (response) {
+            $(".cart-item").html(response);
+            subTotal();
+        }
+    })
+
+
+}
+// function increaseValue(value) {
+//     value = parseInt(document.getElementById('inputQty').value, 10);
+//     value = isNaN(value) ? 0 : value;
+//     value++;
+//     document.getElementById('inputQty').value = value;
+
+// }
+
+// function decreaseValue(value) {
+//     value = parseInt(document.getElementById('inputQty').value, 10);
+//     value = isNaN(value) ? 0 : value;
+//     if (value > !0) {
+//         value--;
+//     }
+//     document.getElementById('inputQty').value = value;
+// }
+
+function removeFromCart(id) {
+    $.ajax({
+        url: "./Controller/Cart/cart.php",
+        type: "POST",
+        data: {
+            action: "removeCart",
+            id: id,
+
+        },
+        success: function (response) {
+            $(".modal-body").html(response);
+
+
         }
 
     })
 
+    $.ajax({
+        url: "./Controller/Cart/cart.php",
+        type: "POST",
+        data: {
+            action: "getCartData",
+        },
+        success: function (response) {
+            $(".modal-body").html(response);
+            $('#modal-aside-right').modal('show');
+        }
+    })
+    subTotal();
 }
+
+
+function subTotal() {
+    $.ajax({
+        url: "./Controller/Cart/cart.php",
+        type: "POST",
+        data: {
+            action: "getSubtotal",
+
+        },
+        success: function (response) {
+            $("#subtotal").html(response);
+        }
+    })
+}
+

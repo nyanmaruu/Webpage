@@ -7,6 +7,11 @@ if (isset($_POST["action"]) && $_POST["action"] == "getCartData") {
     echo $cardAction->dataOfCart();
 }
 
+if (isset($_POST["action"]) && $_POST["action"] == "getCartDataForCheckout") {
+    echo $cardAction->dataOfCartCheckout();
+}
+
+
 if (isset($_POST["action"]) && $_POST["action"] == "addToCartModal") {
     echo $cardAction->addToCart();
 }

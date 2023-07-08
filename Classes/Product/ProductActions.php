@@ -32,7 +32,7 @@ class ProductActions extends AllProducts
       $output .=
 
         '
-            <div class="col-6 col-md-4 col-lg-3 mb-4">
+            <div class="col-6 col-md-4 col-lg-3 mb-4 product">
             <div class="card mt-5">
                 <div class="card-header border-0" >
                 <a  onClick="oneCoffees(' . $row->getId() . ')">
