@@ -6,7 +6,7 @@ class Signup extends Dbh
 
     protected function setUser($uid, $pwd, $email)
     {
-        $stmt = $this->connect()->prepare('INSERT INTO users (users_name, users_password, users_email) VALUES (?,?,?);');
+        $stmt = $this->connect()->prepare('INSERT INTO users (user_name, user_password, user_email) VALUES (?,?,?);');
 
         $hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
 
@@ -22,7 +22,7 @@ class Signup extends Dbh
 
     protected function checkUser($uid, $email)
     {
-        $stmt = $this->connect()->prepare('SELECT users_name FROM users WHERE users_name = ? or users_email = ?; ');
+        $stmt = $this->connect()->prepare('SELECT user_name FROM users WHERE user_name = ? or user_email = ?; ');
 
         if (!$stmt->execute(array($uid, $email))) {
 
