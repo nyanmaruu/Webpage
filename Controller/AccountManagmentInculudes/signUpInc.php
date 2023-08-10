@@ -1,7 +1,6 @@
 <?php
 
 if (isset($_POST["submit"])) {
-    print_r($uid);
 
     $uid = $_POST["uid"];
     $pwd = $_POST["pwd"];

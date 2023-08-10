@@ -65,7 +65,7 @@ class CartData extends Cart
         echo $output;
     }
 
-    function dataOfCartCheckout()
+    function checkDataForDb()
     {
         $output = '';
         $cartData = $this->cartClass->getCartSession();
@@ -76,21 +76,51 @@ class CartData extends Cart
             $output .=
 
                 '
-            <tbody>
                 <tr>
-                    <td class="w-25">
-                        <img src="' . $row['pictures'] . '" class="img-fluid img-thumbnail" alt="#">
-                    </td>
                     <td>' . $row["name"] . '</td>
-                    <td>' . $row['price'] . '$</td>
-                    <td class="qty"><input type="text" class="form-control" id="input1" value="' . $row['quantity'] . '"></td>
-                    <td>Fejlesztés alatt $</td>
+                    <td>' . $row['quantity'] . '</td>
+                    <td class="qty">' . $row['price'] .  '$</td>
                 </tr>
-            </tbody>
+           
       ';
         }
         echo $output;
     }
+
+
+
+    function dataOfCartCheckout()
+    {
+        $output = '';
+        $cartData = $this->cartClass->getCartSession();
+
+
+
+        foreach ($cartData as $row) {
+            $output .=
+                '
+
+                <div class="row border-top border-bottom">
+                <div class="row main align-items-center">
+                    <div class="col-2"><img class="img-fluid" src=' . $row["pictures"] . '></div>
+                    <div class="col">
+                        <div class="row">' . $row["name"] . '</div>
+                    </div>
+                    <div class="col">
+                        <a href="#">-</a><a href="#" class="border">' . $row['quantity'] . '</a><a href="#">+</a>
+                    </div>
+                    <div class="col">' . $row['price'] .  '$<b class="removeItemFromCheckout p-5" onClick="removeFromCheckout(' . $row['id'] . ')" >X</b></div>
+                    
+                </div>
+            </div>
+
+
+        
+   ';
+        }
+        echo $output;
+    }
+
 
 
 
@@ -142,6 +172,41 @@ class CartData extends Cart
             </tbody>
             </table>
             </div>
+
+      ';
+        }
+        echo $output;
+    }
+
+    function removeCheckoutSess()
+    {
+
+        $output = '';
+
+
+
+
+        $cart = $this->cartClass->removeProductSession($_POST['id']);
+
+
+        foreach ($cart as $row) {
+            $output .=
+                '
+         
+                <div class="row border-top border-bottom">
+                <div class="row main align-items-center">
+                    <div class="col-2"><img class="img-fluid" src=' . $row["pictures"] . '></div>
+                    <div class="col">
+                        <div class="row">' . $row["name"] . '</div>
+                    </div>
+                    <div class="col">
+                        <a href="#">-</a><a href="#" class="border">' . $row['quantity'] . '</a><a href="#">+</a>
+                    </div>
+                    <div class="col">' . $row['price'] .  '$<b onClick="removeFromCheckout(' . $row['id'] . ')">X</b></div>
+                    
+                </div>
+            </div>
+
 
       ';
         }
@@ -203,12 +268,28 @@ class CartData extends Cart
     {
         $output = '';
 
-        $subtotal = $this->cartClass->getSubtotal();
+        $getSubTotal = $this->cartClass->getSubtotal();
 
         $output .=
             '
          
-           <p id="cartValue">' . $subtotal . '$</p>
+           <p id="cartValue">' . $getSubTotal . '$</p>
+
+      ';
+
+        echo $output;
+    }
+
+    function getTotalItemsNumber()
+    {
+        $output = '';
+
+        $itemsNumber = $this->cartClass->getItemsNumber();
+
+        $output .=
+            '
+         
+           <p id="cartValue">' . $itemsNumber . '</p>
 
       ';
 

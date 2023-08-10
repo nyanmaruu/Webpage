@@ -46,7 +46,7 @@ session_start();
                         if (isset($_SESSION["userid"])) {
                         ?>
                             <!-- <li class="nav-item"> -->
-                            <a class="nav-link" href="#"><?php echo $_SESSION["useruid"]; ?></a>
+                            <a class="nav-link" href="?oldal=profilePage"><?php echo $_SESSION["useruid"]; ?></a>
                             <a class="nav-link" href="./Controller/AccountManagmentInculudes/logoutInc.php">LOGOUT</a>
                             <!-- </li> -->
                         <?php
@@ -114,7 +114,7 @@ session_start();
 
                     </div>
                     <div class="d-flex justify-content-end">
-                        <h5>Total: <span id="subtotal" class="price text-success"></span></h5>
+                        <h5>Total: <span class="subtotal price text-success"></span></h5>
                     </div>
                     <div class="modal-footer border-top-0 d-flex justify-content-between">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -154,6 +154,9 @@ session_start();
                     break;
                 case 'checkout':
                     include './Pages/Checkout/checkout.php';
+                    break;
+                case 'profilePage':
+                    include './Pages/ProfilePage/profilePage.php';
                     break;
                     // default:
                     //     include 'Lista.php';

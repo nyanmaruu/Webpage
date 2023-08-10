@@ -11,6 +11,7 @@ $("#modal").click(function () {
             $(".modal-body").html(response);
             $('#modal-aside-right').modal('show');
             subTotal();
+            itemsNumber();
         }
     })
 
@@ -35,6 +36,8 @@ function addToCartModal(id) {
     })
 
     subTotal();
+    itemsNumber();
+
 }
 
 function showCartDetails() {
@@ -47,8 +50,10 @@ function showCartDetails() {
             action: "getCartDataForCheckout",
         },
         success: function (response) {
+
             $(".cart-item").html(response);
             subTotal();
+            itemsNumber();
         }
     })
 
@@ -100,6 +105,29 @@ function removeFromCart(id) {
         }
     })
     subTotal();
+    itemsNumber();
+}
+
+function removeFromCheckout(id) {
+    $.ajax({
+        url: "./Controller/Cart/cart.php",
+        type: "POST",
+        data: {
+            action: "removeCheckout",
+            id: id,
+
+        },
+        success: function (response) {
+            $(".cart-item").html(response);
+
+
+        }
+
+    })
+
+    showCartDetails();
+    subTotal();
+    itemsNumber();
 }
 
 
@@ -112,8 +140,23 @@ function subTotal() {
 
         },
         success: function (response) {
-            $("#subtotal").html(response);
+            $(".subtotal").html(response);
         }
     })
 }
+
+function itemsNumber() {
+    $.ajax({
+        url: "./Controller/Cart/cart.php",
+        type: "POST",
+        data: {
+            action: "getItemsNumber",
+
+        },
+        success: function (response) {
+            $(".itemsNumber").html(response);
+        }
+    })
+}
+
 

@@ -11,9 +11,24 @@ function homeOff() {
 }
 
 $(document).ready(function () {
-    overFlowOff();
     homeOff();
     showCartDetails();
+    userAddressForCheckout();
 })
-console.log("test");
 
+
+function userAddressForCheckout() {
+    $.ajax({
+        url: "./Controller/profilePage/profileContr.php",
+        type: "POST",
+        data: {
+            action: "checkoutAddress"
+
+        },
+        success: function (response) {
+            $(".formForCheckout").html(response);
+
+        }
+    })
+
+};

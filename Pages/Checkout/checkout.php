@@ -1,79 +1,46 @@
-<div class="checkoutContainer">
+<head>
+    <link rel="stylesheet" href="CSS/checkout.css">
+</head>
+
+<div class="card">
     <div class="row">
-        <div class="col-md-6">
-            <h2 class="text-center">Shipping Information</h2>
-            <form>
-                <div class="form-group">
-                    <label for="name">Full Name:</label>
-                    <input type="text" id="name" name="name" required class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="address">Address:</label>
-                    <textarea id="address" name="address" required class="form-control"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="city">City:</label>
-                    <input type="text" id="city" name="city" required class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="zip">Zip Code:</label>
-                    <input type="text" id="zip" name="zip" required class="form-control">
-                </div>
-                <div class="form-group">
-                    <label for="country">Country:</label>
-                    <input type="text" id="country" name="country" required class="form-control">
-                </div>
-            </form>
-        </div>
-
-        <div class="col-md-6">
-            <h2 class="text-center">Payment</h2>
-            <div class="payment-options">
-                <div class="form-group">
-                    <label for="credit-card">Payment Option:</label>
-                    <select id="credit-card" name="payment" class="form-control">
-                        <option value="credit-card">Credit Card</option>
-                        <option disabled value="paypal">PayPal</option>
-                        <option disabled value="stripe">Stripe</option>
-                    </select>
-                </div>
-                <form>
-                    <div class="form-group">
-                        <label for="card">Credit Card Number:</label>
-                        <input type="text" id="card" name="card" required class="form-control">
+        <div class="col-md-8 cart">
+            <div class="title">
+                <div class="row">
+                    <div class="col">
+                        <h4><b>Shopping Cart</b></h4>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-sm-6">
-                            <label for="expiry">Expiration Date:</label>
-                            <input type="text" id="expiry" name="expiry" placeholder="MM/YY" required class="form-control">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="cvv">CVV:</label>
-                            <input type="text" id="cvv" name="cvv" required class="form-control">
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <div class="row mt-4">
-        <div class="col-md-12">
-            <div class="cart">
-                <h2 class="cart-title text-center">Cart</h2>
-                <div class="cart-item">
-
+                    <h5 class="col align-self-center text-right text-muted">items: <span class="itemsNumber"></span></h5>
                 </div>
             </div>
+            <div class="cart-item">
+
+            </div>
+
+            <div class="back-to-shop"><a href="javascript:history.back(1)">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
         </div>
-    </div>
+        <div class="col-md-4 summary">
+            <div>
+                <h5><b>Summary</b></h5>
+            </div>
+            <hr>
+            <div class="row">
+                <div class="col" style="padding-left:0;">ITEMS</div>
+                <div class="itemsNumber col text-right"></div>
+            </div>
+            <p>SHIPPING</p>
+
+            <div class="formForCheckout">
 
 
-    <div class="row mt-4">
-        <div class="col-md-12 text-center">
-            <button type="submit" class="btn ">Place Order</button>
+
+            </div>
+
         </div>
+
     </div>
 </div>
 
+
 <script src="./Js/checkout/checkout.js"></script>
+<script src="./Js/cart/cart.js"></script>

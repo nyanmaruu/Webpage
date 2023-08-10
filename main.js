@@ -3,6 +3,7 @@
 let url = window.location.href;
 const errors = document.querySelector(".errorHandler");
 
+
 if (url.match("emptyinput")) {
     errors.style.display = "flex";
     errors.style.color = "#b61d1d";
@@ -31,6 +32,14 @@ if (url.match("emptyinput")) {
     errors.style.display = "flex";
     errors.style.color = "#b61d1d";
     errors.innerHTML = "The username or password is wrong!";
+} else if (url.match("YourOrderIsComplete")) {
+    errors.style.display = "flex";
+    errors.style.color = "green";
+    errors.innerHTML = "Your order has been saved!";
+
+} else if (url.match("youAreNotLoggedIn")) {
+    errors.style.display = "flex";
+    errors.style.color = "#b61d1d";
+    errors.innerHTML = "Please login to continue the checkout!";
+
 }
-
-

@@ -6,7 +6,7 @@ class Login extends Dbh
 
     protected function getUser($uid, $pwd)
     {
-        $stmt = $this->connect()->prepare('SELECT users_password FROM users WHERE users_name = ? OR users_email = ?;');
+        $stmt = $this->connect()->prepare('SELECT user_password FROM users WHERE user_name = ? OR user_email = ?;');
 
 
         if (!$stmt->execute(array($uid, $pwd))) {
@@ -23,7 +23,7 @@ class Login extends Dbh
         }
 
         $pwdHashed = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        $checkPwd = password_verify($pwd, $pwdHashed[0]["users_password"]);
+        $checkPwd = password_verify($pwd, $pwdHashed[0]["user_password"]);
 
 
         if ($checkPwd == false) {
@@ -32,7 +32,7 @@ class Login extends Dbh
             header("location: http://localhost/webpage/?oldal=login&error=userNameOrPasswordWrong");
             exit();
         } else if ($checkPwd == true) {
-            $stmt = $this->connect()->prepare('SELECT * FROM users WHERE users_name = ? OR users_email = ? AND users_password = ?;');
+            $stmt = $this->connect()->prepare('SELECT * FROM users WHERE user_name = ? OR user_email = ? AND user_password = ?;');
 
 
             if (!$stmt->execute(array($uid, $uid, $pwd))) {
@@ -51,7 +51,7 @@ class Login extends Dbh
             session_start();
 
             $_SESSION["userid"] = $user[0]["id"];
-            $_SESSION["useruid"] = $user[0]["users_name"];
+            $_SESSION["useruid"] = $user[0]["user_name"];
         }
 
         $stmt = null;

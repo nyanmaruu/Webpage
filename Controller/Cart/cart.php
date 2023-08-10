@@ -20,6 +20,15 @@ if (isset($_POST["action"]) && $_POST["action"] == "removeCart") {
     echo $cardAction->removeCartSess();
 }
 
+
+if (isset($_POST["action"]) && $_POST["action"] == "removeCheckout") {
+    echo $cardAction->removeCheckoutSess();
+}
+
 if (isset($_POST["action"]) && $_POST["action"] == "getSubtotal") {
     echo $cardAction->getSubtotal();
+}
+
+if (isset($_POST["action"]) && $_POST["action"] == "getItemsNumber") {
+    echo $cardAction->getTotalItemsNumber();
 }

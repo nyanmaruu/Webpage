@@ -1,7 +1,9 @@
 <?php
 
 session_start();
-session_unset();
-session_destroy();
+unset($_SESSION["userid"]);
+unset($_SESSION["useruid"]);
+
+
 
 header("location: http://localhost/webpage/?oldal=&error=none");

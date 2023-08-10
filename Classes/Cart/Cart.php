@@ -84,4 +84,13 @@ class Session_Cart
         }
         return   $totalprice;
     }
+
+    public function getItemsNumber()
+    {
+        $totalItems = 0;
+        foreach ($_SESSION['cart'] as $product_value) {
+            $totalItems += $product_value['quantity'];
+        }
+        return   $totalItems;
+    }
 }
