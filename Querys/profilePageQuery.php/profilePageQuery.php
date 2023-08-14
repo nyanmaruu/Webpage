@@ -6,7 +6,6 @@ class ProfilePageData extends Dbh
 
 
 
-
     protected function getUserData()
     {
 
@@ -72,16 +71,40 @@ class ProfilePageData extends Dbh
         }
     }
 
-    // protected function getOrders()
-    // {
-    //     $_SESSION["userid"] = $_SESSION["userid"];
+    protected function getOrderDates()
+    {
 
-    //     if (!empty($_SESSION["userid"])) {
-    //         $stmt = $this->connect()->prepare('SELECT * FROM product_orders where user_id = :userId');
-    //         $stmt->bindValue(':userId', $_SESSION["userid"]);
-    //         $stmt->execute();
-    //         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    //         return $result;
-    //     }
-    // }   
+
+        $stmt = $this->connect()->prepare('SELECT created_at FROM orders_address where user_id = :userId Group By created_at');
+        $stmt->bindValue(':userId', $_SESSION["userid"]);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+
+    function getOrderDatas($dateFrom, $dateTo)
+    {
+
+        $stmt = $this->connect()->prepare('SELECT product_id,user_id,name,total_price,quantity,a.created_at
+        FROM product_orders a
+        INNER JOIN products b
+        ON a.product_id = b.id
+        WHERE a.created_at BETWEEN :dateFrom  and :dateTo AND user_id = :userId');
+        $stmt->bindValue(':userId', $_SESSION["userid"]);
+        $stmt->bindValue(':dateFrom', $dateFrom);
+        $stmt->bindValue(':dateTo', $dateTo);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }
+
+ 
+
+
+
+// SELECT product_id,user_id,name,total_price,quantity,a.created_at
+//             FROM product_orders a
+//             INNER JOIN products b
+//             ON a.product_id = b.id
+//             WHERE a.created_at = '2023-07-22 18:18:21'

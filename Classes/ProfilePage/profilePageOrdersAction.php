@@ -20,9 +20,39 @@ class ProfileOrders extends ProfilePageData
         }
     }
 
-    function getOrders()
+    function listOrders($dateFrom, $dateTo)
     {
-        return $this->ordersData;
+        $output = '';
+        $dateUserOrders =  $this->querys->getOrderDatas($dateFrom, $dateTo);
+        if (!empty($this->ordersData)) {
+            $output .=  '
+            <table > 
+            <tr>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Total Price</th>
+                <th>Ordered At</th>
+            </tr>
+            ';
+        }
+        foreach ($dateUserOrders as $row) {
+            $output .=
+
+                '
+                    <tr>
+                    <td>' . $row["name"] . '</td>
+                    <td>' . $row["quantity"] . '</td>
+                    <td>' . $row["total_price"] . '$</td>
+                    <td>' . $row["created_at"] . '</td>
+                    </tr>
+
+            ';
+        }
+
+        $output .=  '
+        </table>
+        ';
+        return $output;
     }
 
     function userOrders()

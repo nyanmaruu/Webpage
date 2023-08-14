@@ -15,6 +15,29 @@ $(document).ready(function () {
     homeOff();
 })
 
+document.getElementById("datePickerDiv").style.display = "none";
+
+function searchResult() {
+
+
+    $.ajax({
+        url: "./Controller/profilePage/profileContr.php",
+        type: "POST",
+        data: {
+
+            action: "listOrdersDate",
+            dateFrom: $("#datepicker").val(),
+            dateTo: $("#datepicker2").val()
+        },
+        success: function (response) {
+            $("#dateResult").html(response);
+            overFlowOn();
+        }
+    })
+
+}
+
+
 
 function userPageInfo() {
     $.ajax({
@@ -49,18 +72,39 @@ function setNewAddress() {
 };
 
 
+// function listOrders() {
+//     $.ajax({
+//         url: "./Controller/profilePage/profileContr.php",
+//         type: "POST",
+//         data: {
+//             action: "listOrders"
+
+//         },
+//         success: function (response) {
+//             $("#userAddressData").html(response + "</br>");
+
+//         }
+//     })
+
+// };
+
 function listOrders() {
     $.ajax({
         url: "./Controller/profilePage/profileContr.php",
         type: "POST",
         data: {
-            action: "listOrders"
+            action: "ordersDate"
 
         },
         success: function (response) {
-            $("#userAddressData").html(response + "</br>");
+            $("#userAddressData").html(response);
+            document.getElementById("datePickerDiv").style.display = "block";;
+            $("#datepicker").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
+            $("#datepicker2").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
+
 
         }
     })
 
-};
+
+}

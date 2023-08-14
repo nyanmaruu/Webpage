@@ -12,7 +12,10 @@ session_start();
     <link rel="stylesheet" href="CSS/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <title>Meggyesi József Vizsga Projekt</title>
 </head>
 
@@ -43,12 +46,19 @@ session_start();
                             <button class="nav-link" id="modal" class="btn btn-primary"><i class="fas fa-shopping-cart fa-lg"></i></button>
                         </li>
                         <?php
-                        if (isset($_SESSION["userid"])) {
+                        if (isset($_SESSION["userid"]) && $_SESSION["type_id"] != 1) {
                         ?>
-                            <!-- <li class="nav-item"> -->
+
                             <a class="nav-link" href="?oldal=profilePage"><?php echo $_SESSION["useruid"]; ?></a>
-                            <a class="nav-link" href="./Controller/AccountManagmentInculudes/logoutInc.php">LOGOUT</a>
-                            <!-- </li> -->
+                            <a class="nav-link" href="./Controller/AccountManagmentInculudes/logoutInc.php">Logout</a>
+
+                        <?php
+                        } else if (isset($_SESSION["userid"]) && $_SESSION["type_id"] == 1) {
+                        ?>
+
+                            <a class="nav-link" href="?oldal=adminPage">Admin</a>
+                            <a class="nav-link" href="./Controller/AccountManagmentInculudes/logoutInc.php">Logout</a>
+
                         <?php
                         } else {
                         ?>
@@ -157,6 +167,9 @@ session_start();
                     break;
                 case 'profilePage':
                     include './Pages/ProfilePage/profilePage.php';
+                    break;
+                case 'adminPage':
+                    include './Pages/adminPage/adminPage.php';
                     break;
                     // default:
                     //     include 'Lista.php';
