@@ -1,3 +1,8 @@
+<head>
+    <link rel="stylesheet" href="CSS/products.css">
+</head>
+
+
 <div class="row d-flex justify-content-center" id="baseContent">
 </div>
 

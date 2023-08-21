@@ -6,14 +6,12 @@ session_start();
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="CSS/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <title>Meggyesi József Vizsga Projekt</title>
@@ -43,7 +41,7 @@ session_start();
                 <div class="navbar-right d-flex justify-content-end">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <button class="nav-link" id="modal" class="btn btn-primary"><i class="fas fa-shopping-cart fa-lg"></i></button>
+                            <button class="nav-link" id="modal" class="btn"><i class="fas fa-shopping-cart fa-lg"></i></button>
                         </li>
                         <?php
                         if (isset($_SESSION["userid"]) && $_SESSION["type_id"] != 1) {
@@ -81,7 +79,7 @@ session_start();
     <section class="home" id="home">
         <div class="row">
             <div class="image">
-                <img src="Pictures/frontPage/about-img.png" alt="">
+                <img src="Pictures/frontPage/about-img.jpg" alt="">
             </div>
             <div class="content">
                 <h3 class="title">what' s make our coffee special!</h3>

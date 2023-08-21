@@ -80,3 +80,19 @@ input {
     width: 100%;
     background-color: rgb(247, 247, 247);
 }
+
+
+.card {
+
+    text-align: center;
+    background-color: #fafafa;
+    border: var(--border-hover);
+
+}
+
+
+.addToCartBtn {
+    font-size: 1.7rem;
+    padding-top: 1rem;
+    color: var(--main-color);
+}

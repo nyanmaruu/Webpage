@@ -59,22 +59,24 @@ function showCartDetails() {
 
 
 }
-// function increaseValue(value) {
-//     value = parseInt(document.getElementById('inputQty').value, 10);
-//     value = isNaN(value) ? 0 : value;
-//     value++;
-//     document.getElementById('inputQty').value = value;
 
-// }
 
-// function decreaseValue(value) {
-//     value = parseInt(document.getElementById('inputQty').value, 10);
-//     value = isNaN(value) ? 0 : value;
-//     if (value > !0) {
-//         value--;
-//     }
-//     document.getElementById('inputQty').value = value;
-// }
+function increaseValue(value) {
+    value = parseInt(document.getElementById('inputQty').value);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('inputQty').value = value;
+
+}
+
+function decreaseValue(value) {
+    value = parseInt(document.getElementById('inputQty').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if (value > !0) {
+        value--;
+    }
+    document.getElementById('inputQty').value = value;
+}
 
 function removeFromCart(id) {
     $.ajax({

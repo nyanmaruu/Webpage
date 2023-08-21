@@ -245,11 +245,58 @@ class ProfileActions extends ProfilePageData
                 <div class="col">TOTAL PRICE</div>
                 <div class="subtotal col text-right"></div>
             </div>
-            <button form="addressForm" type="submit" name="submit" class="btnCheckout">Please Login</button>
+            <button name="submit" class="btn" disabled>Please Login And SetAddress Data</button>
              
 
         ';
         }
+        return $output;
+    }
+
+
+    function listOrders($dateFrom, $dateTo)
+    {
+        $output = '';
+        $dateUserOrders =  $this->querys->getOrderDatas($dateFrom, $dateTo);
+        if (!empty($dateUserOrders)) {
+            $output .=  '
+            <table > 
+            <tr>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Total Price</th>
+                <th>Ordered At</th>
+            </tr>
+            ';
+
+            foreach ($dateUserOrders as $row) {
+                $output .=
+
+                    '
+                        <tr>
+                        <td>' . $row["name"] . '</td>
+                        <td>' . $row["quantity"] . '</td>
+                        <td>' . $row["total_price"] . '$</td>
+                        <td>' . $row["created_at"] . '</td>
+                        </tr>
+    
+                ';
+            }
+
+
+            $output .=  '
+        </table>
+        ';
+        } else {
+            $output .=  '
+        <tr>
+<td>There is no order at this time!</td>
+
+</tr>
+
+        ';
+        }
+
         return $output;
     }
 }

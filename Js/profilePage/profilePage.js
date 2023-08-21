@@ -39,6 +39,7 @@ function searchResult() {
 
 
 
+
 function userPageInfo() {
     $.ajax({
         url: "./Controller/profilePage/profileContr.php",
@@ -71,22 +72,6 @@ function setNewAddress() {
 
 };
 
-
-// function listOrders() {
-//     $.ajax({
-//         url: "./Controller/profilePage/profileContr.php",
-//         type: "POST",
-//         data: {
-//             action: "listOrders"
-
-//         },
-//         success: function (response) {
-//             $("#userAddressData").html(response + "</br>");
-
-//         }
-//     })
-
-// };
 
 function listOrders() {
     $.ajax({

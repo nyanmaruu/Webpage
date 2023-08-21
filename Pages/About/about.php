@@ -1,3 +1,7 @@
+<head>
+    <link rel="stylesheet" href="CSS/about.css">
+</head>
+
 <div class="container">
     <div id="about-content" class="row justify-content-center">
         <div class="col-lg-6 col-md-8">

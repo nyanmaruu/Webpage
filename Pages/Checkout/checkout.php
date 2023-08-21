@@ -17,7 +17,7 @@
 
             </div>
 
-            <div class="back-to-shop"><a href="javascript:history.back(1)">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
+            <div class="back-to-shop"><a href="http://localhost/webpage/?oldal=allCoffee">&leftarrow;</a><span class="text-muted">Back to shop</span></div>
         </div>
         <div class="col-md-4 summary">
             <div>
@@ -31,8 +31,6 @@
             <p>SHIPPING</p>
 
             <div class="formForCheckout">
-
-
 
             </div>
 

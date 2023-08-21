@@ -1,24 +1,71 @@
 <?php
-require __DIR__ . '/../../Classes/ProfilePage/profilePageOrders.php';
 require __DIR__ . '/../../Querys/profilePageQuery.php/adminQuery.php';
 
 
-class ProfileOrdersAdmin extends ProfilePageDataAdmin
+class AdminProfile extends ProfilePageDataAdmin
 {
     public $querys;
-    public $ordersData;
 
     public function __construct()
     {
         $this->querys = new ProfilePageDataAdmin;
-        // $data = $this->querys->getOrdersAdmin();
-        // if (!empty($data)) {
-        //     foreach ($data as $row) {
-        //         $orderData = new OrdersData($row['user_id'], $row['name'], $row['product_id'], $row['quantity'], $row['total_price'], $row['created_at']);
-        //         $this->ordersData[] = $orderData;
-        //     }
-        // }
     }
+    function deleteOrderData($orderId)
+    {
+        $this->querys->deleteOrder($orderId);
+    }
+
+    function userOrdersAdmin($dateFrom, $dateTo, $userId)
+    {
+        $output = '';
+        $dateUserOrders =  $this->querys->getOrderDatas($dateFrom, $dateTo, $userId);
+
+
+        if (!empty($dateUserOrders)) {
+            $output .=  '
+            <table > 
+            <tr>
+                <th>Name</th>
+                <th>Qty</th>
+                <th>Total Price</th>
+                <th>Ordered At</th>
+            </tr>
+            ';
+
+            foreach ($dateUserOrders as $row) {
+                $output .=
+
+                    '
+                        <tr>
+                        <td>' . $row["name"] . '</td>
+                        <td>' . $row["quantity"] . '</td>
+                        <td>' . $row["total_price"] . '$</td>
+                        <td>' . $row["created_at"] . '</td>
+                        <td>
+                <button class="btn btn-sm" onClick="deleteOrder(' . $row["id"] . ')">Delete</button>
+            </td>
+                        </tr>
+    
+                ';
+            }
+
+
+            $output .=  '
+        </table>
+        ';
+        } else {
+            $output .=  '
+        <tr>
+<td>There is no order at this time!</td>
+
+</tr>
+
+        ';
+        }
+
+        return $output;
+    }
+
 
     function usersData()
     {
@@ -29,36 +76,9 @@ class ProfileOrdersAdmin extends ProfilePageDataAdmin
             $output .=
 
                 '
-                  <option value="' . $row['user_name'] . '">' . $row['user_name'] . '</option>
+                  <option value="' . $row['id'] . '">' . $row['user_name'] . '</option>
         ';
         }
-
-        return $output;
-    }
-
-
-    function userOrdersAdmin()
-    {
-        $output = '';
-
-
-
-        foreach ($this->ordersData as $row) {
-            $output .=
-
-                '
-      <tr>
-      <td>' . $row->getId() . '</td>
-      <td>' . $row->getProductId() . '</td>
-        <td>' . $row->getName() . '</td>
-        <td>' . $row->getQty() . ' </td>
-        <td>' . $row->getTotalPrice() . '$</td>
-        <td>' . $row->getCreatedAt() . '</td>
-        </tr>
-
-                    ';
-        }
-
 
         return $output;
     }

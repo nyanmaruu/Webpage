@@ -27,12 +27,33 @@ function oneCoffees(id) {
         },
         success: function (response) {
             $("#baseContent").html(response);
-            homeOff()
-            overFlowOff()
+            homeOff();
+            overFlowOff();
+            increaseValue();
+            decreaseValue();
+
         }
+
+
     })
 }
 
+function increaseValue(value) {
+    value = parseInt(document.getElementById('inputQty').value);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('inputQty').value = value;
+
+}
+
+function decreaseValue(value) {
+    value = parseInt(document.getElementById('inputQty').value, 10);
+    value = isNaN(value) ? 0 : value;
+    if (value > !0) {
+        value--;
+    }
+    document.getElementById('inputQty').value = value;
+}
 
 function coffees() {
     $.ajax({

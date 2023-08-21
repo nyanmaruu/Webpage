@@ -95,7 +95,18 @@ class ProfilePageData extends Dbh
         $stmt->bindValue(':dateTo', $dateTo);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
+
+        $resultCheck = false;
+
+        if ($stmt->rowCount() > 0) {
+            $resultCheck = false;
+        } else {
+            $resultCheck = true;
+        }
+
+        if (!$resultCheck) {
+            return $result;
+        }
     }
 }
 

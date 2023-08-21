@@ -42,7 +42,7 @@ class ProductActions extends AllProducts
                 <div class="card-body">
                     <p class="border-0">' . $row->getName() . '</p>
                     <div class="card-footer">
-                    <p class="">' . $row->getPrice() . ' $</p>
+                    <p>' . $row->getPrice() . ' $</p>
                     </div>
                 </div>  
             </div>
@@ -86,7 +86,6 @@ class ProductActions extends AllProducts
 			</div>
 		</div>
 	</div>
-
       
             ';
     }
