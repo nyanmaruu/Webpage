@@ -18,7 +18,7 @@ class ProfilePageDataAdmin extends Dbh
     {
 
 
-        $stmt = $this->connect()->prepare('DELETE FROM `product_orders` WHERE order_id = :orderId');
+        $stmt = $this->connect()->prepare('DELETE FROM orders WHERE id = :orderId');
         $stmt->bindValue(':orderId', $orderId);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
