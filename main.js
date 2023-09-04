@@ -1,5 +1,15 @@
-
-// Error Handlers
+function redirect() {
+    var el = document.getElementById('seconds'),
+        total = el.innerHTML,
+        timeinterval = setInterval(function () {
+            total = --total;
+            el.textContent = total;
+            if (total <= 0) {
+                clearInterval(timeinterval);
+                window.location = 'http://localhost/webpage/?oldal=';
+            }
+        }, 1000);
+}
 
 let url = window.location.href;
 const errors = document.querySelector(".errorHandler");
