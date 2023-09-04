@@ -32,3 +32,7 @@ if (isset($_POST["action"]) && $_POST["action"] == "getSubtotal") {
 if (isset($_POST["action"]) && $_POST["action"] == "getItemsNumber") {
     echo $cardAction->getTotalItemsNumber();
 }
+
+if (isset($_POST["action"]) && $_POST["action"] == "getItemNumberForCart") {
+    echo $cardAction->itemsNumberCartModal();
+}

@@ -14,6 +14,7 @@ session_start();
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
     <title>Meggyesi József Vizsga Projekt</title>
 </head>
 
@@ -21,65 +22,82 @@ session_start();
     <header class="header">
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="?oldal="> <img src="./Pictures/logo/coffee-grain.png" alt="Coffe_Grain" width="40" height="35"></a>
-                <div class="d-flex align-items-center position">
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="?oldal=">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?oldal=allCoffee">Coffees</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?oldal=about">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="?oldal=contact">Contact</a>
-                        </li>
-                    </ul>
+                <a class="navbar-brand offcanvas" href="?oldal="> <img src="./Pictures/logo/coffee-grain.png" alt="Coffe_Grain" width="40" height="35"></a>
+                <button class="navbar-toggler " type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <div class="offcanvas-header">
+                        <a class="navbar-brand" href="?oldal="> <img src="./Pictures/logo/coffee-grain.png" alt="Coffe_Grain" width="40" height="35"></a>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                    </div>
+
+                    <div class="container-fluid offcanvas-body">
+                        <div id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="?oldal=">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="?oldal=allCoffee">Coffees</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="?oldal=about">About</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="?oldal=contact">Contact</a>
+                                </li>
+                            </ul>
+
+                        </div>
+
+                    </div>
+
                 </div>
-                <div class="navbar-right d-flex justify-content-end">
-                    <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <button class="nav-link" id="modal" class="btn"><i class="fas fa-shopping-cart fa-lg"></i></button>
-                        </li>
-                        <?php
-                        if (isset($_SESSION["userid"]) && $_SESSION["type_id"] != 1) {
-                        ?>
 
-                            <a class="nav-link" href="?oldal=profilePage"><?php echo $_SESSION["useruid"]; ?></a>
-                            <a class="nav-link" href="./Controller/AccountManagmentInculudes/logoutInc.php">Logout</a>
+                <div class="d-flex">
+                    <?php
 
-                        <?php
-                        } else if (isset($_SESSION["userid"]) && $_SESSION["type_id"] == 1) {
-                        ?>
+                    if (isset($_SESSION["userid"]) && $_SESSION["type_id"] != 1) {
+                    ?>
 
-                            <a class="nav-link" href="?oldal=adminPage">Admin</a>
-                            <a class="nav-link" href="./Controller/AccountManagmentInculudes/logoutInc.php">Logout</a>
+                        <a class="nav-link me-3" href="?oldal=profilePage"><?php echo $_SESSION["useruid"]; ?></a>
+                        <a class="nav-link me-3" href="./Controller/AccountManagmentInculudes/logoutInc.php"><i class="fas fa-sign-out-alt"></i></a>
 
-                        <?php
-                        } else {
-                        ?>
-                            <li class="nav-item">
-                                <a class="nav-link" href="?oldal=login"><i class="fas fa-sign-in-alt fa-lg"></i> Login</a>
-                            </li>
-                        <?php
-                        }
+                    <?php
+                    } else if (isset($_SESSION["userid"]) && $_SESSION["type_id"] == 1) {
+                    ?>
 
-                        ?>
+                        <a class="nav-link me-3" href="?oldal=adminPage">Admin</a>
+                        <a class="nav-link me-3" href="./Controller/AccountManagmentInculudes/logoutInc.php"><i class="fas fa-sign-out-alt"></i></a>
 
-                    </ul>
+                    <?php
+                    } else {
+                    ?>
+
+                        <a class="nav-link me-3" href="?oldal=login"><i class="fas fa-user fa-lg"></i></a>
+
+                    <?php
+                    }
+
+                    ?>
+
+
+                    <a class="nav-link" id="modal" class="btn "><i class="fas fa-shopping-cart fa-lg shoppingCart">
+
+                        </i></a>
 
                 </div>
             </div>
-            </div>
+
+
         </nav>
     </header>
 
     <section class="home" id="home">
         <div class="row">
             <div class="image">
-                <img src="Pictures/frontPage/about-img.jpg" alt="">
+                <img id="frontPageImage" src="Pictures/frontPage/about-img.jpg" alt="">
             </div>
             <div class="content">
                 <h3 class="title">what' s make our coffee special!</h3>
@@ -112,27 +130,35 @@ session_start();
                 <div class="modal-content">
                     <div class="modal-header border-bottom-0">
                         <h5 class="modal-title" id="exampleModalLabel">
-                            Your Shopping Cart
+                            Your Shopping Cart:
                         </h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
 
                     </div>
-                    <div class="d-flex justify-content-end">
-                        <h5>Total: <span class="subtotal price text-success"></span></h5>
+                    <div class="d-flex justify-content-end subtotal">
                     </div>
                     <div class="modal-footer border-top-0 d-flex justify-content-between">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <a href="?oldal=checkout" type="button" class="btn btn-success">Checkout</a>
+                        <button type="button" class="btn " data-bs-dismiss="modal">Close</button>
+                        <a href="?oldal=checkout" type="button" class="btn">Checkout</a>
                     </div>
                 </div>
             </div>
     </section>
 
-
+    <div class="toast-container  top-0 end-0  pt-5">
+        <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <strong class="me-auto">Cart Update</strong>
+                <small>Just now!</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                Added To The Cart!
+            </div>
+        </div>
+    </div>
 
 
     <div class="errorHandler"></div>
@@ -169,14 +195,7 @@ session_start();
                 case 'adminPage':
                     include './Pages/adminPage/adminPage.php';
                     break;
-                    // default:
-                    //     include 'Lista.php';
-                    // case 'Modositasoldal':
-                    //     include 'Modositas.php';
-                    //     break;
             }
-        } else {
-            // include 'Lista.php';
         }
         ?>
 
@@ -191,17 +210,14 @@ session_start();
                 </div>
 
                 <div class="row">
-                    <span> <strong>Készítette: </strong>Meggyesi József</span>
+                    <span> <strong>Készítette: </strong>Meggyesi József Márk</span>
                 </div>
 
             </div>
         </div>
-        </div>
+
     </footer>
 
-
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     <script src="main.js"></script>
     <script src="./Js/cart/cart.js"></script>
 </body>

@@ -18,37 +18,22 @@ class ProfilePageDataAdmin extends Dbh
     {
 
 
-        $stmt = $this->connect()->prepare('DELETE FROM `product_orders` WHERE id = :orderId');
+        $stmt = $this->connect()->prepare('DELETE FROM `product_orders` WHERE order_id = :orderId');
         $stmt->bindValue(':orderId', $orderId);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    function getOrderDatas($dateFrom, $dateTo, $userId)
+    function getOrderDatas()
     {
 
-        $stmt = $this->connect()->prepare('SELECT a.id,product_id,user_id,name,total_price,quantity,a.created_at
-        FROM product_orders a
-        INNER JOIN products b
-        ON a.product_id = b.id
-        WHERE a.created_at BETWEEN :dateFrom  and :dateTo AND user_id = :userId');
-        $stmt->bindValue(':userId', $userId);
-        $stmt->bindValue(':dateFrom', $dateFrom);
-        $stmt->bindValue(':dateTo', $dateTo);
+        $stmt = $this->connect()->prepare('SELECT
+        b.id,a.name,a.email,a.address,SUM(c.total_price) AS total_ordered_price,b.created_at FROM
+        users_address a INNER JOIN orders b ON b.user_id = a.user_id INNER JOIN
+        product_orders c ON c.order_id = b.id GROUP BY a.name,a.email,a.address,b.created_at ORDER BY b.created_at ASC;');
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        $resultCheck = false;
-
-        if ($stmt->rowCount() > 0) {
-            $resultCheck = false;
-        } else {
-            $resultCheck = true;
-        }
-
-        if (!$resultCheck) {
-            return $result;
-        }
+        return $result;
     }
 }

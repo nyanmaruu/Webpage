@@ -1,5 +1,5 @@
 .wrapper {
-    margin-top: 125px;
+    margin-top: 25px;
     position: relative;
     width: 400px;
     height: 450px;
@@ -114,7 +114,6 @@
 .errorHandler {
     margin: 0 auto;
     font-size: 17px;
-    margin-top: 50px;
     width: 400px;
     height: 50px;
     position: relative;

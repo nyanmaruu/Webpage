@@ -13,9 +13,9 @@ function homeOff() {
 $(document).ready(function () {
     userPageInfo();
     homeOff();
+
 })
 
-document.getElementById("datePickerDiv").style.display = "none";
 
 function searchResult() {
 
@@ -25,20 +25,15 @@ function searchResult() {
         type: "POST",
         data: {
 
-            action: "listOrdersDate",
-            dateFrom: $("#datepicker").val(),
-            dateTo: $("#datepicker2").val()
+            action: "listOrdersData",
         },
         success: function (response) {
-            $("#dateResult").html(response);
+            $("#userAddressData").html(response);
             overFlowOn();
         }
     })
 
 }
-
-
-
 
 function userPageInfo() {
     $.ajax({
@@ -62,34 +57,12 @@ function setNewAddress() {
         type: "POST",
         data: {
             action: "setAddressData"
-
         },
         success: function (response) {
             $("#userAddressData").html(response);
-
         }
     })
 
 };
 
 
-function listOrders() {
-    $.ajax({
-        url: "./Controller/profilePage/profileContr.php",
-        type: "POST",
-        data: {
-            action: "ordersDate"
-
-        },
-        success: function (response) {
-            $("#userAddressData").html(response);
-            document.getElementById("datePickerDiv").style.display = "block";;
-            $("#datepicker").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
-            $("#datepicker2").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
-
-
-        }
-    })
-
-
-}

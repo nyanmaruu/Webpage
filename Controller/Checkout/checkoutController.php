@@ -1,28 +1,26 @@
 <?php
 session_start();
+include "../../Classes/Connection/Connection.php";
+include "../../Querys/checkoutQuery/order.php";
 
 
 if (isset($_POST["submit"])) {
 
-    $name = $_POST["name"];
-    $email = $_POST["email"];
-    $address = $_POST["address"];
-    $city = $_POST["city"];
-    $zipcode = $_POST["zipcode"];
-    $country = $_POST["country"];
+    if (!empty($_SESSION["cart"])) {
 
-    echo ($_SESSION["useruid"]);
-    include "../../Classes/Connection/Connection.php";
-    include "../../Querys/checkoutQuery/order.php";
+        header("location: http://localhost/webpage/Pages/Checkout/payment.php");
+    } else {
+        header("location: http://localhost/webpage/?oldal=checkout&&error=CartEmpty");
+    }
+}
+if (isset($_POST["cardPayment"])) {
 
     $orderItem = new Order();
 
     $userId = $_SESSION["userid"];
 
-    $orderItem->setOrder($userId, $name, $email, $city, $address, $zipcode, $country);
-
+    $orderItem->setOrder($userId);
 
     unset($_SESSION["cart"]);
-
-    header("location: http://localhost/webpage/?oldal=&error=YourOrderIsComplete");
+    header("location: http://localhost/webpage/Pages\Checkout\successfulyPayment.php");
 }

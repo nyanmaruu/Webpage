@@ -18,6 +18,6 @@ if (isset($_POST["action"]) && $_POST["action"] == "checkoutAddress") {
     echo $userAction->userDataForCheckout();
 }
 
-if (isset($_POST["action"]) && $_POST["action"] == "listOrdersDate") {
-    echo $userAction->listOrders($_POST["dateFrom"], $_POST["dateTo"]);
+if (isset($_POST["action"]) && $_POST["action"] == "listOrdersData") {
+    echo $userAction->listOrders();
 }

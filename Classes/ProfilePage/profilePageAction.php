@@ -40,11 +40,11 @@ class ProfileActions extends ProfilePageData
                     <div class="row">
                         <div class="col-md-8 cart">
                             <div class="title">
-                                <h1>Test</h1>
+                                <h1>' . $_SESSION["useruid"] . '</h1>
                                 <div class="row">
                                     <div class="col">
                                         <a  onClick="setNewAddress()" class="btn">Set Address</a>
-                                        <a onClick="listOrders()" class="btn col">Check Orders</a>
+                                        <a onClick="searchResult()" class="btn col">Check Orders</a>
                                     </div>
                                 </div>
                             </div>
@@ -97,12 +97,12 @@ class ProfileActions extends ProfilePageData
                 <div class="row">
                     <div class="col-md-8 cart">
                         <div class="title">
-                            <h1>Test</h1>
+                            <h1>' . $_SESSION["useruid"] . '</h1>
                             <div class="row">
                                 <div class="col">
                                     <a  onClick="setNewAddress()" class="btn">Set Address</a>
                                     <a onClick="listOrders()" class="btn col">Check Orders</a>
-                                                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -133,13 +133,7 @@ class ProfileActions extends ProfilePageData
             <div class="row">
                 <div class="col-md-8 cart">
                     <div class="title">
-                        <h1>Test</h1>
-                        <div class="row">
-                            <div class="col">
-                                <a  onClick="setNewAddress()" class="btn">Set Address</a>
-                                <a onClick="listOrders()" class="btn col">Check Orders</a>
-                            </div>
-                        </div>
+                        <h1>' . $_SESSION["useruid"] . '</h1>
                     </div>
                 </div>
                 <div class="col-md-4 summary">
@@ -171,9 +165,9 @@ class ProfileActions extends ProfilePageData
                     </div>
                     <div class="input-wrapper lg-third">
                         <label for="shipping-postal-code">Zip/Postal Code</label>
-                        <input  type="text" name="zipcode"  required>
+                        <input  type="number" name="zipcode"  required>
                     </div>
-                    <button class="AccountBtn" type="submit" name="submit">Save</button>
+                    <button class="AccountBtn btn" type="submit" name="submit">Save</button>
                 </form>
                 </div>
                   
@@ -229,10 +223,10 @@ class ProfileActions extends ProfilePageData
     <div class="col">TOTAL PRICE</div>
     <div class="subtotal col text-right"></div>
 </div>
-<button form="addressForm" type="submit" name="submit" class="btnCheckout">CHECKOUT</button>
+<button form="addressForm" type="submit" name="submit" class="btnCheckout btn">CHECKOUT</button>
                 ';
             }
-        } else {
+        } else if (!isset($_SESSION["address_id"]) && $_SESSION["userid"] != "") {
             $output .=
 
                 '
@@ -245,60 +239,149 @@ class ProfileActions extends ProfilePageData
                 <div class="col">TOTAL PRICE</div>
                 <div class="subtotal col text-right"></div>
             </div>
-            <button name="submit" class="btn" disabled>Please Login And SetAddress Data</button>
+            <a href="http://localhost/webpage/?oldal=profilePage" name="submit" class="btn" >Please set your address in the profile page</a>
              
 
         ';
+        } else {
+            $output .=
+
+                '
+            <select>
+            <option class="text-muted">Free Delivery</option>
+        </select>
+        <p>GIVE CODE</p>
+        <input id="code" placeholder="Enter your code">
+        <div class="row" style="border-top: 1px solid rgba(0,0,0,.1); padding: 2vh 0;">
+            <div class="col">TOTAL PRICE</div>
+            <div class="subtotal col text-right"></div>
+        </div>
+        <a href="http://localhost/webpage/?oldal=login" name="submit" class="btn" >Please login to continue</a>
+         
+
+    ';
         }
         return $output;
     }
 
 
-    function listOrders($dateFrom, $dateTo)
+    function listOrders()
     {
         $output = '';
-        $dateUserOrders =  $this->querys->getOrderDatas($dateFrom, $dateTo);
+        $dateUserOrders =  $this->querys->getOrderDatas();
         if (!empty($dateUserOrders)) {
             $output .=  '
-            <table > 
-            <tr>
-                <th>Name</th>
-                <th>Qty</th>
-                <th>Total Price</th>
-                <th>Ordered At</th>
-            </tr>
+           
+            <!-- admin panel cards end -->
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Manage <b>Orders</b></h2>
+                        </div>
+                        <div class="col-sm-6">
+                           
+                            <a href="http://localhost/webpage/?oldal=profilePage" class="btn"><i class="fas fa-arrow-left"></i> <span>Back</span></a>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                            </th>
+                            <th>Order Time</th>
+                            <th>Product and Quantity</th>
+                            <th>Address</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
             ';
 
             foreach ($dateUserOrders as $row) {
                 $output .=
 
                     '
-                        <tr>
-                        <td>' . $row["name"] . '</td>
-                        <td>' . $row["quantity"] . '</td>
-                        <td>' . $row["total_price"] . '$</td>
-                        <td>' . $row["created_at"] . '</td>
-                        </tr>
-    
+                                    <tbody>
+                                    <tr>
+                                    <td>
+                                        <span class="custom-checkbox">
+                                        </span>
+                                    </td>
+                                    <td>' . $row["createdAtDate"] . '</td>
+                                    <td>' . $row["ordered_products"] . '</td>
+                                    <td>' . $row["address"] . '</td>
+                                    <td>' . $row["total_ordered_price"] . ' $</td>
+                
+                                    <td>
+                                        <a><i class="fas fa-shipping-fast"></i>Recieved Order</a>
+                                    </td>
+                                </tr>
+                                    </tbody>
                 ';
             }
 
-
             $output .=  '
-        </table>
-        ';
+            </table>
+                
+            </div>
+        </div>
+    </div>        ';
         } else {
             $output .=  '
-        <tr>
-<td>There is no order at this time!</td>
-
-</tr>
-
-        ';
+           
+            <!-- admin panel cards end -->
+    <div class="container-xl">
+        <div class="table-responsive">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h2>Manage <b>Orders</b></h2>
+                        </div>
+                        <div class="col-sm-6">
+                           
+                            <a href="http://localhost/webpage/?oldal=profilePage" class="btn"><i class="fas fa-arrow-left"></i> <span>Back</span></a>
+                        </div>
+                    </div>
+                </div>
+                <table class="table table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                            </th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Address</th>
+                            <th>Total</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    
+                    <tbody>
+                    <tr>
+                    <td>
+                        <span class="custom-checkbox">
+                        </span>
+                    </td>
+                    <td>There is no orders yet!</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                    </tbody>
+                    </table>
+                
+            </div>
+        </div>
+    </div>    
+            ';
         }
 
         return $output;
     }
 }
-
-//mvc = model -> view -> controller

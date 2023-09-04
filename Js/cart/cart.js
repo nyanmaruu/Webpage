@@ -1,3 +1,7 @@
+$(document).ready(function () {
+    itemsNumberCart();
+})
+
 $("#modal").click(function () {
 
 
@@ -12,9 +16,9 @@ $("#modal").click(function () {
             $('#modal-aside-right').modal('show');
             subTotal();
             itemsNumber();
+            itemsNumberCart();
         }
     })
-
 
 })
 
@@ -29,16 +33,26 @@ function addToCartModal(id) {
         },
         success: function (response) {
             $(".modal-body").html(response);
-            $('#modal-aside-right').modal('show');
-
+            $("#liveToast").html();
+            toast();
+            itemsNumberCart();
         },
 
     })
 
     subTotal();
     itemsNumber();
+    itemsNumberCart();
 
 }
+
+
+function toast() {
+    const toastLiveExample = document.getElementById('liveToast')
+    const toast = new bootstrap.Toast(toastLiveExample)
+    toast.show()
+}
+
 
 function showCartDetails() {
 
@@ -54,12 +68,27 @@ function showCartDetails() {
             $(".cart-item").html(response);
             subTotal();
             itemsNumber();
+            itemsNumberCart();
         }
     })
 
 
 }
 
+
+function itemsNumberCart() {
+    $.ajax({
+        url: "./Controller/Cart/cart.php",
+        type: "POST",
+        data: {
+            action: "getItemNumberForCart",
+
+        },
+        success: function (response) {
+            $(".shoppingCart").html(response);
+        }
+    })
+}
 
 function increaseValue(value) {
     value = parseInt(document.getElementById('inputQty').value);
@@ -89,8 +118,6 @@ function removeFromCart(id) {
         },
         success: function (response) {
             $(".modal-body").html(response);
-
-
         }
 
     })
@@ -103,11 +130,11 @@ function removeFromCart(id) {
         },
         success: function (response) {
             $(".modal-body").html(response);
-            $('#modal-aside-right').modal('show');
+
         }
     })
     subTotal();
-    itemsNumber();
+    itemsNumberCart();
 }
 
 function removeFromCheckout(id) {
@@ -121,8 +148,7 @@ function removeFromCheckout(id) {
         },
         success: function (response) {
             $(".cart-item").html(response);
-
-
+            itemsNumberCart();
         }
 
     })
@@ -130,6 +156,7 @@ function removeFromCheckout(id) {
     showCartDetails();
     subTotal();
     itemsNumber();
+    itemsNumberCart();
 }
 
 
@@ -159,6 +186,7 @@ function itemsNumber() {
             $(".itemsNumber").html(response);
         }
     })
+
 }
 
 

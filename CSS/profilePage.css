@@ -6,9 +6,8 @@
     margin: auto;
     max-width: 950px;
     width: 90%;
-    box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    border-radius: 1rem;
-    border: transparent;
+    text-align: center;
+    background-color: #fafafa;
 }
 
 @media(max-width:767px) {
@@ -31,16 +30,6 @@
         border-top-right-radius: 1rem;
     }
 }
-
-/*
-jobb oldalért felelős
-.summary {
-    background-color: #ddd;
-    border-top-right-radius: 1rem;
-    border-bottom-right-radius: 1rem;
-    padding: 4vh;
-    color: rgb(65, 65, 65);
-} */
 
 @media(max-width:767px) {
     .summary {
@@ -79,20 +68,4 @@ input {
     outline: none;
     width: 100%;
     background-color: rgb(247, 247, 247);
-}
-
-
-.card {
-
-    text-align: center;
-    background-color: #fafafa;
-    border: var(--border-hover);
-
-}
-
-
-.addToCartBtn {
-    font-size: 1.7rem;
-    padding-top: 1rem;
-    color: var(--main-color);
 }

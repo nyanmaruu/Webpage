@@ -10,76 +10,40 @@ class AdminProfile extends ProfilePageDataAdmin
     {
         $this->querys = new ProfilePageDataAdmin;
     }
+
     function deleteOrderData($orderId)
     {
         $this->querys->deleteOrder($orderId);
     }
 
-    function userOrdersAdmin($dateFrom, $dateTo, $userId)
+    function userOrdersAdmin()
     {
         $output = '';
-        $dateUserOrders =  $this->querys->getOrderDatas($dateFrom, $dateTo, $userId);
+        $order = $this->querys->getOrderDatas();
 
+        foreach ($order as $row) {
 
-        if (!empty($dateUserOrders)) {
-            $output .=  '
-            <table > 
-            <tr>
-                <th>Name</th>
-                <th>Qty</th>
-                <th>Total Price</th>
-                <th>Ordered At</th>
-            </tr>
-            ';
-
-            foreach ($dateUserOrders as $row) {
-                $output .=
-
-                    '
-                        <tr>
-                        <td>' . $row["name"] . '</td>
-                        <td>' . $row["quantity"] . '</td>
-                        <td>' . $row["total_price"] . '$</td>
-                        <td>' . $row["created_at"] . '</td>
-                        <td>
-                <button class="btn btn-sm" onClick="deleteOrder(' . $row["id"] . ')">Delete</button>
-            </td>
-                        </tr>
-    
-                ';
-            }
-
-
-            $output .=  '
-        </table>
-        ';
-        } else {
-            $output .=  '
-        <tr>
-<td>There is no order at this time!</td>
-
-</tr>
-
-        ';
-        }
-
-        return $output;
-    }
-
-
-    function usersData()
-    {
-        $output = '';
-        $dataUsers =  $this->querys->getUsers();
-
-        foreach ($dataUsers as $row) {
             $output .=
-
                 '
-                  <option value="' . $row['id'] . '">' . $row['user_name'] . '</option>
-        ';
-        }
+               <tr>
+                    <td>
+                        <span class="custom-checkbox">
+                            
+                        </span>
+                    </td>
 
-        return $output;
+                    <td>' . $row["name"] . '</td>
+                    <td>' . $row["email"] . '</td>
+                    <td>' . $row["address"] . '</td>
+                    <td>' . $row["total_ordered_price"] . ' $</td>
+
+                    <td>
+                        <a onclick="deleteOrder(' . $row["id"] . ')"  class="delete" data-toggle="modal"><i
+                                class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                    </td>
+                </tr>
+            ';
+        }
+        echo $output;
     }
 }

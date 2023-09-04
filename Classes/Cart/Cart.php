@@ -24,7 +24,6 @@ class Session_Cart
     public function setCartSession($product, $qty)
     {
         $isExistProduct = false;
-        // ha nem empty - javítani
         foreach ($_SESSION['cart'] as $product_value) {
             if ($product_value['id'] == $product[0]['id']) {
                 $isExistProduct = true;
@@ -88,9 +87,12 @@ class Session_Cart
     public function getItemsNumber()
     {
         $totalItems = 0;
-        foreach ($_SESSION['cart'] as $product_value) {
-            $totalItems += $product_value['quantity'];
+        if (!empty($_SESSION['cart'])) {
+            foreach ($_SESSION['cart'] as $product_value) {
+                $totalItems += $product_value['quantity'];
+            }
         }
+
         return   $totalItems;
     }
 }

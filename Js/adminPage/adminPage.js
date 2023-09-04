@@ -3,37 +3,44 @@ function overFlowOn() {
 }
 
 function overFlowOff() {
-    document.body.style.overflowY = "hidden";
+    document.header.style.display = "none";
 }
 
 function homeOff() {
     document.getElementById("home").style.display = "none";
 }
 
+function navHider() {
+    document.querySelector(".header").style.display = "none"
+
+}
+
 $(document).ready(function () {
     homeOff();
-    listOrdersAdmin();
-    $("#datepicker").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
-    $("#datepicker2").datepicker().datepicker("option", "dateFormat", "yy-mm-dd");
+    ordersResult();
+    navHider();
 })
 
 
-function listOrdersAdmin() {
+
+function ordersResult() {
+
+
     $.ajax({
         url: "./Controller/adminPage/adminPageContr.php",
         type: "POST",
         data: {
-            action: "listOrdersAdmin"
 
+            action: "listOrders",
         },
         success: function (response) {
-            $("#users").html(response);
-            console.log(response);
-
+            $("#ordersResult").html(response);
+            overFlowOn();
         }
     })
 
-};
+}
+
 
 function deleteOrder(id) {
     $.ajax({
@@ -45,8 +52,8 @@ function deleteOrder(id) {
 
         },
         success: function (response) {
-            $("#dateResult").html(response);
-            searchResultAdmin()
+            $("#ordersResult").html(response);
+            ordersResult()
         }
     })
 
@@ -55,24 +62,3 @@ function deleteOrder(id) {
 
 
 
-
-function searchResultAdmin() {
-
-
-    $.ajax({
-        url: "./Controller/adminPage/adminPageContr.php",
-        type: "POST",
-        data: {
-
-            action: "listOrdersDateAdmin",
-            dateFrom: $("#datepicker").val(),
-            dateTo: $("#datepicker2").val(),
-            userId: $("#users").val(),
-        },
-        success: function (response) {
-            $("#dateResult").html(response);
-            overFlowOn();
-        }
-    })
-
-}

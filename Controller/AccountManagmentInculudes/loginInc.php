@@ -12,5 +12,9 @@ if (isset($_POST["submit"])) {
 
     $login->loginUser();
 
-    header("location: http://localhost/webpage/?oldal=&error=loggedIn");
+    if ($_SESSION["type_id"] == 1) {
+        header("location: http://localhost/webpage/?oldal=adminPage");
+    } else {
+        header("location: http://localhost/webpage/?oldal=&error=loggedIn");
+    }
 }

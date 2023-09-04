@@ -4,18 +4,26 @@ class Order extends Dbh
 {
 
 
-    public function setOrder($userId, $name, $email, $city, $address, $zipcode, $country)
+    public function setOrder($userId)
     {
+
+        $db = $this->connect();
+        $stmt = $db->prepare('SELECT address_id from users_address WHERE user_id = :userid;');
+        $stmt->bindValue(':userid', $userId);
+        $stmt->execute();
+        $id = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $address_id = $id[0]["address_id"];
 
         if (!empty($userId)) {
 
 
-            $db = $this->connect();
-            $stmt = $db->prepare('INSERT INTO orders (user_id) VALUES (?);');
+            $stmt = $db->prepare('INSERT INTO orders (user_id, address_id) VALUES (:userid, :address_id);');
+            $stmt->bindValue(':userid', $userId);
+            $stmt->bindValue(':address_id', $address_id);
 
 
-
-            if (!$stmt->execute(array($userId))) {
+            if (!$stmt->execute()) {
 
                 $stmt = null;
                 header("location: http://localhost/webpage/?oldal=login&error=stmtFailed");
@@ -24,7 +32,6 @@ class Order extends Dbh
 
 
 
-            // $stmt = null;
             $orderId = $db->lastInsertId();
 
             if ($userId) {
@@ -41,16 +48,6 @@ class Order extends Dbh
                     $stmt->bindValue(':totalPrice', ($quantity["baseprice"] * $quantity["quantity"]));
                     $stmt->execute();
                 }
-
-                $stmt = $db->prepare('INSERT INTO orders_address (user_id, name, email, address, city, zip_code, country) VALUES (:userId,:name,:email,:address,:city,:zip_code,:country);');
-                $stmt->bindValue(':userId', $userId);
-                $stmt->bindValue(':name', $name);
-                $stmt->bindValue(':email', $email);
-                $stmt->bindValue(':address', $address);
-                $stmt->bindValue(':city', $city);
-                $stmt->bindValue(':zip_code', $zipcode);
-                $stmt->bindValue(':country', $country);
-                $stmt->execute();
             }
             $stmt = null;
         } else {
@@ -59,5 +56,3 @@ class Order extends Dbh
         }
     }
 }
-
-// user_addres tábla id, user_id , alap adress
