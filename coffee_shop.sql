@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2023 at 08:47 PM
+-- Generation Time: Sep 04, 2023 at 10:37 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -56,18 +56,6 @@ CREATE TABLE `orders` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
-
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `address_id`, `user_id`, `created_at`, `updated_at`) VALUES
-(76, 42, 6, '2023-08-31 19:55:10', '2023-08-31 19:55:10'),
-(77, 42, 6, '2023-08-31 19:55:32', '2023-08-31 19:55:32'),
-(78, 45, 2, '2023-09-03 15:35:17', '2023-09-03 15:35:17'),
-(79, 46, 11, '2023-09-03 18:16:05', '2023-09-03 18:16:05'),
-(80, 46, 11, '2023-09-03 18:17:15', '2023-09-03 18:17:15'),
-(81, 47, 4, '2023-09-04 16:39:46', '2023-09-04 16:39:46');
 
 -- --------------------------------------------------------
 
@@ -126,16 +114,6 @@ CREATE TABLE `product_orders` (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_hungarian_ci;
 
---
--- Dumping data for table `product_orders`
---
-
-INSERT INTO `product_orders` (`id`, `user_id`, `order_id`, `product_id`, `quantity`, `price`, `total_price`, `created_at`, `updated_at`) VALUES
-(65, 11, 79, 2, 2, 12, 24, '2023-09-03 18:16:05', '2023-09-03 18:16:05'),
-(66, 11, 80, 5, 1, 13, 13, '2023-09-03 18:17:15', '2023-09-03 18:17:15'),
-(67, 4, 81, 11, 1, 15, 15, '2023-09-04 16:39:46', '2023-09-04 16:39:46'),
-(68, 4, 81, 6, 3, 11, 33, '2023-09-04 16:39:46', '2023-09-04 16:39:46');
-
 -- --------------------------------------------------------
 
 --
@@ -157,18 +135,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `type_id`, `user_name`, `user_password`, `user_email`, `created_at`, `updated_at`) VALUES
-(2, 1, 'Test', '$2y$10$2B9eSKmj1C7zheuiVHrpo.NcV3RwawVPAfpFhNl1Osw6wxShMF6V6', 'volok222@gmail.com', '2023-07-21 16:33:33', '2023-09-03 15:44:51'),
-(3, 0, 'lini', '$2y$10$6WbkFkPt7dMrMxihJfGcROzzZFUTmTLCbnYEBdhhVWX77h/SGZeZ2', 'lini@gmail.com', '2023-08-06 18:53:21', '2023-08-06 18:53:21'),
-(4, 0, 'rebarbara', '$2y$10$LndXPjN9ddWrmMbGMmJbXewUvaipPqFz5QEapxINLU.8NWr.EYXh6', 'csbarbara1026@gmail.com', '2023-08-21 18:27:44', '2023-08-21 18:27:44'),
-(5, 0, 'mumu', '$2y$10$RamWqQNOP/CfnVYph.IbjOOCTZ2Wtm4lt0rT5FJfUL6utxlcBe73W', 'mumu@mumu.com', '2023-08-21 19:30:53', '2023-08-21 19:30:53'),
-(6, 0, 'asd', '$2y$10$HO3sK94tqblxPZBDy9kPYeMIfR4.aBdsvvNfVoTo6xXIRwW7cE4a.', 'asd@gmail.com', '2023-08-26 17:02:05', '2023-08-26 17:02:05'),
-(7, 0, 'nyan', '$2y$10$FhOi6ttOpRMMgAXWHiHA0eV40ACkWqNziSBfjLcN37AlQyqbC4kIy', 'nyan@nyan.com', '2023-08-30 17:18:02', '2023-08-30 18:44:16'),
-(8, 0, 'Gerrysrac', '$2y$10$Yzv./UO/imIpDLwCK3uGzOvm3Qts2JJod9kRjaUw2b.IZno29tv.C', 'gerrymail09@gmail.com', '2023-08-31 13:23:48', '2023-08-31 13:23:48'),
-(9, 0, 'utah', '$2y$10$A0sXPC/Jts26PpXLMjWgDuE/1y.4Bnq4bEF8MnkD7lV4m/IMjw2I6', 'utah@gmail.com', '2023-08-31 16:03:34', '2023-08-31 16:03:34'),
-(10, 0, 'kecske', '$2y$10$1jNuGI0Std0i14dTtTJueOUYmL5m8MrWW82FoabDojimChv9qsOdu', 'kecske@gmail.com', '2023-08-31 16:05:17', '2023-08-31 16:05:17'),
-(11, 0, 'gigi', '$2y$10$POkbdaRJqMMXJsWohvuGd.d9P4uEY1yL41zRWRLfKUZGhx/FEEFBm', 'gigi@gmail.com', '2023-09-03 18:13:10', '2023-09-03 18:13:10'),
-(12, 0, 'gaga', '$2y$10$k7UglQmnvzMXJE8x0.UdUeJoa9ph0oj/mnceTAaqf5WRKaOwziHHW', 'gaga@gmail.com', '2023-09-03 18:26:22', '2023-09-03 18:26:22'),
-(13, 0, 'tete', '$2y$10$RVx567gJQceFVB7G.TLNbuDsY.hnJQCXLHMHCA9EgKXeL5SNa4kuK', 'tete@gmail.com', '2023-09-03 18:47:46', '2023-09-03 18:47:46');
+(14, 0, 'Test', '$2y$10$NDpxkwmnVerXXMmiFl.haudUGmKPXPWM7/jxICa9HtmZP2/RmF1q.', 'test@gmail.com', '2023-09-04 20:15:18', '2023-09-04 20:15:18'),
+(15, 1, 'Admin', '$2y$10$ZEYW/gYumz/Sn9mILioEnuANhHbPNUHymCjxxVmU0zaRps5SJALO.', 'admin@gmail.com', '2023-09-04 20:15:58', '2023-09-04 20:16:04'),
+(16, 0, 'test2', '$2y$10$PzqJgg2KZDcWOzY1HUxGJO5vnnIyLJcb8Hq2UtajVtBgtGxaD433.', 'test2@gmail.com', '2023-09-04 20:18:39', '2023-09-04 20:18:39');
 
 -- --------------------------------------------------------
 
@@ -192,12 +161,7 @@ CREATE TABLE `users_address` (
 --
 
 INSERT INTO `users_address` (`address_id`, `user_id`, `name`, `email`, `address`, `city`, `zip_code`, `country`) VALUES
-(42, 6, 'József Meggyesi', 'Duckinton222@gmail.com', 'csemete utca 36-38', 'Debrecen', '4026', 'Magyarország'),
-(43, 8, 'József Meggyesi', 'Duckinton222@gmail.com', 'csemete utca 36-38', 'Debrecen', '4026', 'Magyarország'),
-(44, 9, 'József Meggyesi', 'Duckinton222@gmail.com', 'csemete utca 36-38', 'Debrecen', '4026', 'Magyarország'),
-(45, 2, 'Test', 'test@gmail.com', 'Test utca 21', 'TestCity', '2022', 'Test_megye'),
-(46, 11, '786', '867', '867', '867', '867', '867'),
-(47, 4, 'József Meggyesi', 'Duckinton222@gmail.com', 'csemete utca 36-38', 'Debrecen', '4026', 'Magyarország');
+(48, 14, 'Test Péter', 'Test@gmail.com', 'Test utca 5', 'Test City', '21321', 'Test');
 
 --
 -- Indexes for dumped tables
@@ -260,7 +224,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -272,19 +236,19 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_orders`
 --
 ALTER TABLE `product_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `users_address`
 --
 ALTER TABLE `users_address`
-  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `address_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Constraints for dumped tables
@@ -306,8 +270,8 @@ ALTER TABLE `products`
 -- Constraints for table `product_orders`
 --
 ALTER TABLE `product_orders`
-  ADD CONSTRAINT `product_orders_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `product_orders_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `product_orders_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `product_orders_ibfk_3` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `users_address`
