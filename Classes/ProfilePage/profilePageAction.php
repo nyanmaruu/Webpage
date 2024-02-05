@@ -226,7 +226,7 @@ class ProfileActions extends ProfilePageData
 <button form="addressForm" type="submit" name="submit" class="btnCheckout btn">CHECKOUT</button>
                 ';
             }
-        } else if (!isset($_SESSION["address_id"]) && $_SESSION["userid"] != "") {
+        } else if (!isset($_SESSION["address_id"]) && isset($_SESSION["userid"])) {
             $output .=
 
                 '
